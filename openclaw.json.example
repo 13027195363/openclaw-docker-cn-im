@@ -21,55 +21,13 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "model id",
-            "name": "model name",
+            "id": "gpt-4o",
+            "name": "GPT-4o",
             "reasoning": false,
             "input": [
               "text",
               "image"
             ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          }
-        ]
-      },
-      "openai-example": {
-        "baseUrl": "http://localhost:3000/v1",
-        "apiKey": "your-api-key",
-        "api": "openai-completions",
-        "models": [
-          {
-            "id": "gemini-3-flash-preview",
-            "name": "Gemini 3 Flash Preview",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 1000000,
-            "maxTokens": 8192
-          }
-        ]
-      },
-      "claude-example": {
-        "baseUrl": "http://localhost:3000",
-        "apiKey": "your-api-key",
-        "api": "anthropic-messages",
-        "models": [
-          {
-            "id": "claude-sonnet-4-5",
-            "name": "Claude Sonnet 4.5",
-            "reasoning": false,
-            "input": ["text", "image"],
             "cost": {
               "input": 0,
               "output": 0,
@@ -86,10 +44,10 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "default/gemini-3-flash-preview"
+        "primary": "default/gpt-4o"
       },
       "imageModel": {
-        "primary": "default/gemini-3-flash-preview"
+        "primary": "default/gpt-4o"
       },
       "workspace": "/home/node/.openclaw/workspace",
       "compaction": {
@@ -133,76 +91,6 @@
       "botToken": "your-token",
       "groupPolicy": "open",
       "streamMode": "partial"
-    },
-    "feishu": {
-      "enabled": true,
-      "dmPolicy": "open",
-      "allowFrom": ["*"],
-      "groupPolicy": "open",
-      "streaming": true,
-      "footer": {
-        "elapsed": true,
-        "status": true
-      },
-      "requireMention": true,
-      "accounts": {
-        "default": {
-          "appId": "your-app-id",
-          "appSecret": "your-app-secret",
-          "botName": "OpenClaw Bot"
-        }
-      }
-    },
-    "dingtalk": {
-      "enabled": true,
-      "clientId": "dingxxxxxx",
-      "clientSecret": "your-app-secret",
-      "robotCode": "dingxxxxxx",
-      "corpId": "dingxxxxxx",
-      "agentId": "123456789",
-      "dmPolicy": "open",
-      "allowFrom": ["*"],
-      "groupPolicy": "open",
-      "messageType": "markdown",
-      "debug": false
-    },
-    "qqbot": {
-      "enabled": true,
-      "appId": "your-qqbot-app-id",
-      "clientSecret": "your-qqbot-client-secret",
-      "dmPolicy": "open",
-      "allowFrom": ["*"],
-      "groupPolicy": "open"
-    },
-    "wecom": {
-      "enabled": true,
-      "dmPolicy": "open",
-      "allowFrom": ["*"],
-      "groupPolicy": "open",
-      "bot1": {
-        "token": "Bot1 的 Token",
-        "encodingAesKey": "Bot1 的 EncodingAESKey",
-        "adminUsers": ["admin1"],
-        "agent": {
-          "corpId": "企业 CorpID",
-          "corpSecret": "Bot1 应用 Secret",
-          "agentId": 1000001,
-          "token": "Bot1 回调 Token",
-          "encodingAesKey": "Bot1 回调 EncodingAESKey"
-        },
-        "webhooks": {
-          "ops-group": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx"
-        }
-      },
-      "bot2": {
-        "token": "Bot2 的 Token",
-        "encodingAesKey": "Bot2 的 EncodingAESKey",
-        "agent": {
-          "corpId": "企业 CorpID",
-          "corpSecret": "Bot2 应用 Secret",
-          "agentId": 1000002
-        }
-      }
     }
   },
   "gateway": {
@@ -225,46 +113,9 @@
     "entries": {
       "telegram": {
         "enabled": true
-      },
-      "feishu": {
-        "enabled": true
-      },
-      "dingtalk": {
-        "enabled": true
-      },
-      "wecom": {
-        "enabled": true
-      },
-      "qqbot": {
-        "enabled": true
       }
     },
-    "installs": {
-      "feishu": {
-        "source": "npm",
-        "spec": "@openclaw/feishu",
-        "installPath": "/home/node/.openclaw/extensions/feishu",
-        "installedAt": "2026-01-31T05:53:18.535Z"
-      },
-      "dingtalk": {
-        "source": "npm",
-        "spec": "https://github.com/soimy/clawdbot-channel-dingtalk.git",
-        "installPath": "/home/node/.openclaw/extensions/dingtalk",
-        "installedAt": "2026-02-01T04:23:35.823Z"
-      },
-      "wecom": {
-        "source": "npm",
-        "spec": "@sunnoy/wecom",
-        "installPath": "/home/node/.openclaw/extensions/wecom",
-        "installedAt": "2026-02-01T05:18:35.770Z"
-      },
-      "qqbot": {
-        "source": "path",
-        "sourcePath": "/home/node/.openclaw/qqbot",
-        "installPath": "/home/node/.openclaw/extensions/qqbot",
-        "installedAt": "2026-02-01T06:50:54.140Z"
-      }
-    }
+    "installs": {}
   },
   "memory": {
     "backend": "qmd",
