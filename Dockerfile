@@ -10,10 +10,10 @@ ENV BUN_INSTALL="/usr/local" \
     DEBIAN_FRONTEND=noninteractive
 
 # 1. 替换为国内镜像源（解决内网无法访问 deb.debian.org）
-RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || \
-    (echo "deb http://mirrors.aliyun.com/debian bookworm main" > /etc/apt/sources.list && \
-     echo "deb http://mirrors.aliyun.com/debian bookworm-updates main" >> /etc/apt/sources.list && \
-     echo "deb http://mirrors.aliyun.com/debian-security bookworm-security main" >> /etc/apt/sources.list) && \
+RUN sed -i 's|deb.debian.org|mirrors.sangfor.org|g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || \
+    (echo "deb http://mirrors.sangfor.org/debian bookworm main" > /etc/apt/sources.list && \
+     echo "deb http://mirrors.sangfor.org/debian bookworm-updates main" >> /etc/apt/sources.list && \
+     echo "deb http://mirrors.sangfor.org/debian-security bookworm-security main" >> /etc/apt/sources.list) && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
     bash \
