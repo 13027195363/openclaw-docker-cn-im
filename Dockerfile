@@ -41,10 +41,6 @@ RUN sed -i 's|deb.debian.org|mirrors.sangfor.org|g' /etc/apt/sources.list.d/debi
     # 更新 npm 并安装全局包
     npm install -g npm@latest && \
     npm install -g openclaw@2026.3.8 opencode-ai@latest playwright @steipete/bird && \
-    curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash && \
-    /usr/local/bin/bun install -g @tobilu/qmd && \
-    # 安装 Playwright 浏览器依赖
-    npx playwright install chromium --with-deps && \
     # 清理 apt 缓存
     apt-get purge -y --auto-remove && \
     apt-get clean && \
