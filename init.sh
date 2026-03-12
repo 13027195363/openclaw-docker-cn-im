@@ -255,6 +255,36 @@ def sync():
             entries['telegram']['enabled'] = False
             print('🚫 环境变量缺失，已禁用渠道: telegram')
 
+        # Mattermost 同步
+        if env.get('MATTERMOST_BOT_TOKEN') and env.get('MATTERMOST_URL'):
+            conf_obj = ensure_path(channels, ['mattermost'])
+            conf_obj.update({
+                'botToken': env['MATTERMOST_BOT_TOKEN'],
+                'baseUrl': env['MATTERMOST_URL'],
+                'dmPolicy': env.get('MATTERMOST_DM_POLICY') or 'open',
+                'groupPolicy': env.get('MATTERMOST_GROUP_POLICY') or 'open',
+                'allowFrom': [x.strip() for x in env['MATTERMOST_ALLOW_FROM'].split(',') if x.strip()] if env.get('MATTERMOST_ALLOW_FROM') else def_allow_from,
+                'requireMention': env.get('MATTERMOST_REQUIRE_MENTION', 'true').lower() == 'true',
+                'autoReply': env.get('MATTERMOST_AUTO_REPLY', 'true').lower() == 'true',
+                'messageHandling': env.get('MATTERMOST_MESSAGE_HANDLING') or 'process'
+            })
+            # Webhook 配置
+            if env.get('MATTERMOST_WEBHOOK_URL'):
+                conf_obj['webhooks'] = {
+                    'url': env['MATTERMOST_WEBHOOK_URL'],
+                    'events': [x.strip() for x in env.get('MATTERMOST_EVENTS', 'message_received').split(',') if x.strip()],
+                    'filters': {
+                        'channel_ids': [x.strip() for x in env['MATTERMOST_CHANNEL_IDS'].split(',') if x.strip()] if env.get('MATTERMOST_CHANNEL_IDS') else []
+                    }
+                }
+            entries['mattermost'] = {'enabled': True}
+            print('✅ 渠道同步: mattermost')
+        elif 'mattermost' in entries and entries['mattermost'].get('enabled'):
+            entries['mattermost']['enabled'] = False
+            print('🚫 环境变量缺失，已禁用渠道: mattermost')
+
+        # 汇总所有已启用的插件到 allow 列表
+
         # 汇总所有已启用的插件到 allow 列表
         plugins['allow'] = [k for k, v in entries.items() if v.get('enabled')]
         if plugins['allow']:
