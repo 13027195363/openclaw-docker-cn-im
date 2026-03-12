@@ -36,6 +36,8 @@ RUN sed -i 's|deb.debian.org|mirrors.sangfor.org|g' /etc/apt/sources.list.d/debi
     websockify && \
     # 配置 git 使用 HTTPS 替代 SSH
     git config --system url."https://github.com/".insteadOf ssh://git@github.com/ && \
+    # 配置 npm 使用内网镜像源
+    npm config set registry http://npm.uedc.sangfor.com.cn:80 && \
     # 更新 npm 并安装全局包
     npm install -g npm@latest && \
     npm install -g openclaw@2026.3.8 opencode-ai@latest playwright @steipete/bird && \
