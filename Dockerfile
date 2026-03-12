@@ -40,7 +40,7 @@ RUN sed -i 's|deb.debian.org|mirrors.sangfor.org|g' /etc/apt/sources.list.d/debi
     npm config set registry http://npm.uedc.sangfor.com.cn:80 && \
     # 更新 npm 并安装全局包
     npm install -g npm@latest && \
-    npm install -g openclaw@2026.3.8 opencode-ai@latest playwright @steipete/bird && \
+    npm install -g openclaw@2026.3.8 opencode-ai@latest playwright @steipete/bird @openclaw/mattermost && \
     # 清理 apt 缓存
     apt-get purge -y --auto-remove && \
     apt-get clean && \
